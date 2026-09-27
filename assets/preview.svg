@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-label="Animated mock-up of the story loading screen">
+  <defs>
+    <!-- day scene -->
+    <linearGradient id="daySky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3f66"/>
+      <stop offset="0.55" stop-color="#c98f52"/>
+      <stop offset="1" stop-color="#e7c07a"/>
+    </linearGradient>
+    <!-- night scene -->
+    <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#030208"/>
+      <stop offset="0.6" stop-color="#150612"/>
+      <stop offset="1" stop-color="#3a0808"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffdede" stop-opacity="0.9"/>
+      <stop offset="0.35" stop-color="#b21818" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#b21818" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff4d6"/>
+      <stop offset="0.3" stop-color="#ffe2a3" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#ffe2a3" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- cinematic vignette: edges only, centre clear -->
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.78" stop-color="#190000" stop-opacity="0.55"/>
+      <stop offset="0.92" stop-color="#2a0000" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#000" stop-opacity="1"/>
+    </radialGradient>
+
+    <linearGradient id="textFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5ece2"/>
+      <stop offset="0.55" stop-color="#dcbeb6"/>
+      <stop offset="1" stop-color="#b21818"/>
+    </linearGradient>
+
+    <!-- typing reveals: one per line, 16s loop, 4s per slide -->
+    <clipPath id="type1"><rect x="332" y="440" width="0" height="40">
+      <animate attributeName="width" values="0;296;296;0;0" keyTimes="0;0.1125;0.21875;0.25;1" dur="16s" repeatCount="indefinite"/>
+    </rect></clipPath>
+    <clipPath id="type2"><rect x="293" y="440" width="0" height="40">
+      <animate attributeName="width" values="0;0;374;374;0;0" keyTimes="0;0.25;0.3625;0.46875;0.5;1" dur="16s" repeatCount="indefinite"/>
+    </rect></clipPath>
+    <clipPath id="type3"><rect x="355" y="440" width="0" height="40">
+      <animate attributeName="width" values="0;0;250;250;0;0" keyTimes="0;0.5;0.6125;0.71875;0.75;1" dur="16s" repeatCount="indefinite"/>
+    </rect></clipPath>
+    <clipPath id="type4"><rect x="386" y="440" width="0" height="40">
+      <animate attributeName="width" values="0;0;188;188;0" keyTimes="0;0.75;0.8625;0.96875;1" dur="16s" repeatCount="indefinite"/>
+    </rect></clipPath>
+
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1">
+        <animate attributeName="seed" values="1;2;3;4;5;6" dur="0.6s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.08 0"/>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+
+    <style>
+      /* slow push-in on each scene */
+      .kenburns { animation: push 8s linear infinite; transform-origin: 480px 270px; }
+      @keyframes push { from { transform: scale(1); } to { transform: scale(1.06); } }
+
+      /* day -> night -> day */
+      .day   { animation: dayFade 16s ease-in-out infinite; }
+      .night { animation: nightFade 16s ease-in-out infinite; }
+      @keyframes dayFade   { 0%, 44% { opacity: 1; } 50%, 94% { opacity: 0; } 100% { opacity: 1; } }
+      @keyframes nightFade { 0%, 44% { opacity: 0; } 50%, 94% { opacity: 1; } 100% { opacity: 0; } }
+
+      /* red eyes in the treeline */
+      .eyes { animation: eyes 16s infinite; }
+      @keyframes eyes {
+        0%, 76% { opacity: 0; }
+        80%, 84%, 88%, 94% { opacity: 1; }
+        82%, 86% { opacity: 0.1; }
+        97%, 100% { opacity: 0; }
+      }
+
+      /* skip hint appears after the first slide, then pulses */
+      .skip { animation: skip 16s infinite; }
+      @keyframes skip {
+        0%, 20% { opacity: 0; }
+        26% { opacity: 0.85; } 34% { opacity: 0.3; } 42% { opacity: 0.85; }
+        50% { opacity: 0.3; } 58% { opacity: 0.85; } 66% { opacity: 0.3; }
+        74% { opacity: 0.85; } 82% { opacity: 0.3; } 90% { opacity: 0.85; }
+        97%, 100% { opacity: 0; }
+      }
+
+      .fog { animation: fog 20s ease-in-out infinite alternate; }
+      @keyframes fog { from { transform: translateX(-80px); } to { transform: translateX(80px); } }
+    </style>
+  </defs>
+
+  <rect width="960" height="540" fill="#000"/>
+
+  <g class="kenburns">
+    <!-- DAY -->
+    <g class="day">
+      <rect width="960" height="540" fill="url(#daySky)"/>
+      <circle cx="560" cy="250" r="140" fill="url(#sunGlow)"/>
+      <circle cx="560" cy="250" r="34" fill="#fff1d0"/>
+      <path d="M0 360 L120 250 L190 300 L300 170 L400 290 L470 240 L560 320 L680 200 L790 300 L880 250 L960 300 L960 540 L0 540 Z" fill="#3b4a6b"/>
+      <path d="M0 400 L960 400 L960 540 L0 540 Z" fill="#2e4660"/>
+      <rect y="398" width="960" height="4" fill="#f3d9a0" opacity="0.5"/>
+      <path d="M0 540 L0 380 L20 330 L40 380 L60 300 L80 380 L110 340 L130 390 L150 320 L170 400 L200 540 Z" fill="#132116"/>
+      <path d="M960 540 L960 370 L940 320 L920 380 L900 300 L880 380 L850 340 L830 400 L800 540 Z" fill="#132116"/>
+    </g>
+
+    <!-- NIGHT -->
+    <g class="night">
+      <rect width="960" height="540" fill="url(#nightSky)"/>
+      <circle cx="700" cy="150" r="120" fill="url(#moonGlow)"/>
+      <circle cx="700" cy="150" r="30" fill="#f2d2d2"/>
+      <path d="M0 360 L120 250 L190 300 L300 170 L400 290 L470 240 L560 320 L680 200 L790 300 L880 250 L960 300 L960 540 L0 540 Z" fill="#0c0610"/>
+      <path d="M0 400 L960 400 L960 540 L0 540 Z" fill="#07030a"/>
+      <path d="M0 540 L0 360 L30 300 L50 360 L80 280 L100 360 L130 320 L150 380 L180 300 L200 390 L240 540 Z" fill="#020102"/>
+      <path d="M960 540 L960 360 L930 300 L910 360 L880 280 L860 360 L830 320 L810 380 L780 300 L760 390 L720 540 Z" fill="#020102"/>
+      <!-- cabin -->
+      <path d="M430 400 L430 350 L480 318 L530 350 L530 400 Z" fill="#050205"/>
+      <rect x="470" y="365" width="18" height="16" fill="#ffb347" opacity="0.55"/>
+      <!-- eyes -->
+      <g class="eyes" fill="#ff1a1a">
+        <ellipse cx="98" cy="352" rx="4" ry="2"/><ellipse cx="112" cy="352" rx="4" ry="2"/>
+        <ellipse cx="846" cy="340" rx="4" ry="2"/><ellipse cx="860" cy="340" rx="4" ry="2"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- low fog -->
+  <g opacity="0.35" filter="url(#soft)">
+    <ellipse class="fog" cx="480" cy="430" rx="520" ry="40" fill="#5a1a1a"/>
+  </g>
+
+  <rect width="960" height="540" fill="url(#vignette)"/>
+  <rect width="960" height="540" filter="url(#grain)"/>
+
+  <!-- letterbox -->
+  <rect width="960" height="27" fill="#000"/>
+  <rect y="513" width="960" height="27" fill="#000"/>
+
+  <!-- story text (typed) -->
+  <g font-family="'Courier New', Courier, monospace" font-size="26" text-anchor="middle" fill="url(#textFill)" stroke="#230000" stroke-width="0.8" paint-order="stroke">
+    <g clip-path="url(#type1)"><text x="480" y="468" textLength="296" lengthAdjust="spacing">A Peaceful morning.</text></g>
+    <g clip-path="url(#type2)"><text x="480" y="468" textLength="374" lengthAdjust="spacing">Players explore the map.</text></g>
+    <g clip-path="url(#type3)"><text x="480" y="468" textLength="250" lengthAdjust="spacing">The night comes.</text></g>
+    <g clip-path="url(#type4)"><text x="480" y="468" textLength="188" lengthAdjust="spacing">They awaken.</text></g>
+  </g>
+
+  <!-- skip hint -->
+  <text class="skip" x="936" y="532" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="14" fill="#c83c37">Click anywhere to skip</text>
+</svg>

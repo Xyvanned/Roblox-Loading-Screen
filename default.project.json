@@ -1,0 +1,25 @@
+{
+  "name": "Roblox-Loading-Screen",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedFirst": {
+      "$path": "src/ReplicatedFirst"
+    },
+
+    "ReplicatedStorage": {
+      "Mechanism": {
+        "$className": "Folder",
+        "LoadingScreenRemotes": {
+          "$className": "Folder",
+          "ShouldPlayIntro": { "$className": "RemoteFunction" },
+          "IntroFinished": { "$className": "RemoteFunction" }
+        }
+      }
+    },
+
+    "ServerScriptService": {
+      "$path": "src/ServerScriptService"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Roblox Loading Screen - Open Sourced">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050000"/>
+      <stop offset="0.6" stop-color="#140202"/>
+      <stop offset="1" stop-color="#2a0303"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.45" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.8" stop-color="#1a0000" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="titleFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5ece2"/>
+      <stop offset="0.55" stop-color="#dcbeb6"/>
+      <stop offset="1" stop-color="#b21818"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#8b0000" flood-opacity="0.9"/>
+      <feComposite in2="blur" operator="in" result="red"/>
+      <feMerge><feMergeNode in="red"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fog" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3">
+        <animate attributeName="seed" values="1;2;3;4;5;6;7;8" dur="0.8s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feColorMatrix values="0 0 0 0 0.6  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.09 0"/>
+    </filter>
+    <clipPath id="typeClip">
+      <rect x="322" y="190" width="0" height="40">
+        <animate attributeName="width" values="0.0;16.4;32.8;49.2;65.6;82.0;98.4;114.8;131.2;147.6;164.0;180.4;196.8;213.2;229.6;246.0;262.4;278.8;295.2;311.6;328.0;344.4;360.8;377.2;393.6;410.0;426.4;442.8;459.2;475.6;492.0;508.4;524.8;541.2;557.6;557.6;0" keyTimes="0.0000;0.0132;0.0265;0.0397;0.0529;0.0662;0.0794;0.0926;0.1059;0.1191;0.1324;0.1456;0.1588;0.1721;0.1853;0.1985;0.2118;0.2250;0.2382;0.2515;0.2647;0.2779;0.2912;0.3044;0.3176;0.3309;0.3441;0.3574;0.3706;0.3838;0.3971;0.4103;0.4235;0.4368;0.4500;0.9;1" dur="7s" repeatCount="indefinite" calcMode="discrete"/>
+      </rect>
+    </clipPath>
+    <style>
+      .flicker { animation: flicker 5s infinite; }
+      @keyframes flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+        20%, 24%, 55% { opacity: 0.35; }
+      }
+      .drift1 { animation: drift 18s ease-in-out infinite alternate; }
+      .drift2 { animation: drift 24s ease-in-out infinite alternate-reverse; }
+      @keyframes drift {
+        from { transform: translateX(-120px); }
+        to   { transform: translateX(120px); }
+      }
+      .caret { animation: blink 0.9s steps(1) infinite; }
+      @keyframes blink { 50% { opacity: 0; } }
+      .drip { animation: drip 4s ease-in infinite; transform-box: fill-box; transform-origin: top; }
+      .drip.d2 { animation-delay: 1.6s; animation-duration: 5s; }
+      .drip.d3 { animation-delay: 2.7s; animation-duration: 4.4s; }
+      @keyframes drip {
+        0%   { transform: scaleY(0); opacity: 0; }
+        10%  { opacity: 1; }
+        70%  { transform: scaleY(1); opacity: 1; }
+        100% { transform: scaleY(1); opacity: 0; }
+      }
+      .pulse { animation: pulse 2.8s ease-in-out infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.85; } }
+    </style>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+
+  <!-- drifting fog -->
+  <g opacity="0.5" filter="url(#fog)">
+    <ellipse class="drift1" cx="300" cy="260" rx="320" ry="60" fill="#3a0a0a"/>
+    <ellipse class="drift2" cx="900" cy="270" rx="360" ry="70" fill="#2b0606"/>
+  </g>
+
+  <!-- treeline silhouette -->
+  <path d="M0 320 L0 262 L30 250 L42 222 L54 250 L80 244 L96 206 L112 246 L150 240 L170 214 L188 244 L240 252 L262 226 L280 250 L330 258 L350 232 L368 256 L420 262 L438 236 L458 262 L520 268 L540 244 L560 266 L640 272 L660 246 L680 270 L760 266 L780 238 L800 262 L860 258 L880 224 L900 254 L950 250 L972 216 L992 248 L1040 244 L1060 210 L1080 244 L1120 250 L1140 226 L1160 252 L1200 258 L1200 320 Z" fill="#070101"/>
+
+  <!-- title -->
+  <g filter="url(#glow)" class="flicker">
+    <text x="600" y="150" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="64" letter-spacing="6" fill="url(#titleFill)">ROBLOX LOADING SCREEN</text>
+  </g>
+
+  <!-- blood drips from the title -->
+  <g fill="#8e0f0f">
+    <rect class="drip" x="318" y="156" width="4" height="34" rx="2"/>
+    <rect class="drip d2" x="668" y="156" width="3" height="26" rx="1.5"/>
+    <rect class="drip d3" x="934" y="156" width="4" height="40" rx="2"/>
+  </g>
+
+  <!-- typed subtitle -->
+  <g clip-path="url(#typeClip)">
+    <text x="600" y="218" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="22" letter-spacing="3" fill="#d9c7bf" textLength="556" lengthAdjust="spacing">Open Sourced · Story intro · Luau</text>
+  </g>
+
+  <!-- red rule -->
+  <rect class="pulse" x="450" y="244" width="300" height="2" fill="#b21818"/>
+
+  <rect width="1200" height="320" fill="url(#vignette)"/>
+  <rect width="1200" height="320" filter="url(#grain)"/>
+
+  <!-- letterbox -->
+  <rect width="1200" height="18" fill="#000"/>
+  <rect y="302" width="1200" height="18" fill="#000"/>
+</svg>
